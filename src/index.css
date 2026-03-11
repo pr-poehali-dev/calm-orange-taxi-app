@@ -4,55 +4,56 @@
 
 @layer base {
   :root {
-    --background: 30 25% 97%;
-    --foreground: 20 15% 15%;
+    --background: 240 20% 97%;
+    --foreground: 240 18% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 20 15% 15%;
+    --card-foreground: 240 18% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 20 15% 15%;
+    --popover-foreground: 240 18% 12%;
 
-    --primary: 25 95% 53%;
+    --primary: 252 85% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 30 40% 94%;
-    --secondary-foreground: 20 15% 20%;
+    --secondary: 250 30% 94%;
+    --secondary-foreground: 250 20% 25%;
 
-    --muted: 30 20% 94%;
-    --muted-foreground: 20 10% 50%;
+    --muted: 240 15% 94%;
+    --muted-foreground: 240 10% 52%;
 
-    --accent: 20 90% 48%;
+    --accent: 262 80% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 20% 88%;
-    --input: 30 20% 88%;
-    --ring: 25 95% 53%;
+    --border: 240 15% 90%;
+    --input: 240 15% 90%;
+    --ring: 252 85% 60%;
 
-    --radius: 1rem;
+    --radius: 1.5rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary: 252 85% 60%;
     --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 250 30% 94%;
+    --sidebar-accent-foreground: 240 18% 12%;
+    --sidebar-border: 240 15% 90%;
+    --sidebar-ring: 252 85% 60%;
 
-    /* Orange taxi custom vars */
-    --orange-50: #fff7ed;
-    --orange-100: #ffedd5;
-    --orange-200: #fed7aa;
-    --orange-400: #fb923c;
-    --orange-500: #f97316;
-    --orange-600: #ea580c;
-    --orange-700: #c2410c;
-    --warm-gray: #78716c;
-    --warm-light: #fafaf9;
+    /* Brand palette — deep violet */
+    --brand-50: #f5f3ff;
+    --brand-100: #ede9fe;
+    --brand-200: #ddd6fe;
+    --brand-300: #c4b5fd;
+    --brand-400: #a78bfa;
+    --brand-500: #8b5cf6;
+    --brand-600: #7c3aed;
+    --brand-700: #6d28d9;
+    --brand-800: #5b21b6;
+    --brand-900: #4c1d95;
   }
 }
 
@@ -77,17 +78,17 @@
 
 @layer utilities {
   .taxi-gradient {
-    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 60%, #5b21b6 100%);
   }
 
   .taxi-gradient-soft {
-    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
   }
 
   .glass-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
   .animate-fade-in {
@@ -99,13 +100,13 @@
   }
 
   .animate-slide-up {
-    animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation: slideUp 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(8px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -116,7 +117,7 @@
   @keyframes scaleIn {
     from {
       opacity: 0;
-      transform: scale(0.92);
+      transform: scale(0.9);
     }
     to {
       opacity: 1;
@@ -127,7 +128,7 @@
   @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(24px);
+      transform: translateY(28px);
     }
     to {
       opacity: 1;
