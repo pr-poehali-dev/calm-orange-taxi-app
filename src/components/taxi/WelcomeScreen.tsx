@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UserRole } from "@/pages/Index";
 import Icon from "@/components/ui/icon";
+import TaxiLogo from "./TaxiLogo";
 
 interface Props {
   onLogin: (role: UserRole, name?: string) => void;
@@ -36,109 +37,111 @@ export default function WelcomeScreen({ onLogin }: Props) {
   };
   const openForm = (form: "passenger" | "driver" | "admin") => { setActiveForm(form); setError(""); };
 
-  const inputCls = "w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3.5 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-violet-400 text-sm transition-all";
+  const inputCls = "w-full bg-white border border-[#e6ebf1] rounded-2xl px-4 py-3.5 text-[#17212b] placeholder-[#a0adb8] focus:outline-none focus:border-[#2AABEE] focus:ring-2 focus:ring-[#2AABEE]/20 text-[15px] transition-all";
+  const btnPrimary = "w-full tg-gradient text-white font-semibold py-3.5 rounded-2xl shadow-md shadow-[#2AABEE]/30 active:scale-95 transition-all text-[15px] tracking-wide";
 
   return (
-    <div className="min-h-dvh flex flex-col relative overflow-hidden" style={{ background: "linear-gradient(160deg, #f5f3ff 0%, #ede9fe 50%, #e0e7ff 100%)" }}>
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-violet-400 opacity-12 blur-3xl" />
-        <div className="absolute top-1/2 -left-40 w-72 h-72 rounded-full bg-purple-300 opacity-15 blur-3xl" />
-        <div className="absolute -bottom-20 right-4 w-56 h-56 rounded-full bg-indigo-400 opacity-10 blur-2xl" />
-      </div>
+    <div className="min-h-dvh flex flex-col" style={{ background: "linear-gradient(170deg, #2AABEE 0%, #006aad 38%, #f1f3f4 38%)" }}>
 
-      <div className="flex flex-col items-center pt-16 pb-8 px-6 animate-fade-in">
-        <div className="w-20 h-20 taxi-gradient rounded-3xl flex items-center justify-center shadow-2xl shadow-violet-400/30 mb-5">
-          <span className="text-4xl">🚕</span>
+      {/* Hero top */}
+      <div className="flex flex-col items-center pt-12 pb-6 px-6">
+        <div className="drop-shadow-2xl animate-scale-in">
+          <TaxiLogo size={110} />
         </div>
-        <h1 className="text-3xl font-black text-slate-800 tracking-tight">ТаксиЭкспресс</h1>
-        <p className="text-sm text-slate-400 mt-1.5 font-medium">Быстро. Удобно. Надёжно.</p>
+        <h1 className="text-2xl font-black text-white mt-3 tracking-tight drop-shadow-md">
+          Алло Антипиха
+        </h1>
+        <p className="text-[13px] text-white/80 mt-1 font-medium tracking-wide">Такси · быстро и надёжно</p>
       </div>
 
-      {!activeForm && (
-        <div className="flex-1 flex flex-col justify-center px-5 gap-3 animate-slide-up">
-          <p className="text-center text-slate-400 text-sm font-medium mb-1">Выберите, кто вы</p>
-          {([
-            { id: "passenger" as const, icon: "👤", title: "Пассажир", sub: "Вход по номеру телефона" },
-            { id: "driver" as const, icon: "🚗", title: "Водитель", sub: "Вход по логину и паролю" },
-            { id: "admin" as const, icon: "🛡️", title: "Администратор", sub: "Управление сервисом" },
-          ]).map(item => (
-            <button key={item.id} onClick={() => openForm(item.id)}
-              className="w-full bg-white/80 backdrop-blur-sm rounded-3xl p-5 flex items-center gap-4 shadow-sm border border-violet-100 active:scale-95 transition-all hover:shadow-md hover:border-violet-200">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 text-2xl" style={{ background: "linear-gradient(135deg, #f5f3ff, #ede9fe)" }}>
-                {item.icon}
-              </div>
-              <div className="text-left">
-                <div className="font-bold text-slate-800 text-base">{item.title}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{item.sub}</div>
-              </div>
-              <Icon name="ChevronRight" size={18} className="ml-auto text-violet-300" />
+      {/* Card */}
+      <div className="flex-1 bg-[#f1f3f4] rounded-t-[2rem] px-5 pt-6 pb-8 animate-slide-up">
+
+        {!activeForm && (
+          <div className="space-y-3">
+            <p className="text-[13px] font-semibold text-[#708499] uppercase tracking-wider mb-4 text-center">Войдите как</p>
+
+            {([
+              { id: "passenger" as const, icon: "👤", title: "Пассажир", sub: "Вход по номеру телефона" },
+              { id: "driver" as const, icon: "🚗", title: "Водитель", sub: "Вход по логину и паролю" },
+              { id: "admin" as const, icon: "🛡️", title: "Администратор", sub: "Управление сервисом" },
+            ]).map(item => (
+              <button key={item.id} onClick={() => openForm(item.id)}
+                className="w-full bg-white rounded-2xl p-4 flex items-center gap-4 border border-[#e6ebf1] active:scale-[0.98] transition-all hover:border-[#2AABEE]/40 hover:shadow-sm">
+                <div className="w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 text-2xl"
+                  style={{ background: "linear-gradient(135deg, #e8f6fd, #c5e9f9)" }}>
+                  {item.icon}
+                </div>
+                <div className="text-left flex-1">
+                  <div className="font-semibold text-[#17212b] text-[15px]">{item.title}</div>
+                  <div className="text-[12px] text-[#708499] mt-0.5">{item.sub}</div>
+                </div>
+                <Icon name="ChevronRight" size={16} className="text-[#c5d0dc]" />
+              </button>
+            ))}
+          </div>
+        )}
+
+        {activeForm === "passenger" && (
+          <div className="animate-slide-up">
+            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[#2AABEE] text-[14px] mb-5 font-semibold">
+              <Icon name="ArrowLeft" size={16} /> Назад
             </button>
-          ))}
-        </div>
-      )}
-
-      {activeForm === "passenger" && (
-        <div className="flex-1 flex flex-col px-5 pt-4 animate-slide-up">
-          <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-slate-400 text-sm mb-6 font-medium"><Icon name="ArrowLeft" size={16} /> Назад</button>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-xl" style={{ background: "linear-gradient(135deg, #ede9fe, #ddd6fe)" }}>👤</div>
-            <h2 className="text-xl font-black text-slate-800">Вход для пассажира</h2>
-          </div>
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5 block">Имя (необязательно)</label>
-              <input type="text" placeholder="Ваше имя" value={passengerName} onChange={e => { setPassengerName(e.target.value); setError(""); }} className={inputCls} />
+            <h2 className="text-[18px] font-black text-[#17212b] mb-5">Вход для пассажира</h2>
+            <div className="space-y-3">
+              <div>
+                <label className="text-[11px] font-semibold text-[#708499] uppercase tracking-wider mb-1.5 block">Имя (необязательно)</label>
+                <input type="text" placeholder="Ваше имя" value={passengerName} onChange={e => { setPassengerName(e.target.value); setError(""); }} className={inputCls} />
+              </div>
+              <div>
+                <label className="text-[11px] font-semibold text-[#708499] uppercase tracking-wider mb-1.5 block">Номер телефона</label>
+                <input type="tel" placeholder="+7 (___) ___-__-__" value={passengerPhone} onChange={e => { setPassengerPhone(e.target.value); setError(""); }} className={inputCls} />
+              </div>
             </div>
-            <div>
-              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5 block">Номер телефона</label>
-              <input type="tel" placeholder="+7 (___) ___-__-__" value={passengerPhone} onChange={e => { setPassengerPhone(e.target.value); setError(""); }} className={inputCls} />
-            </div>
+            {error && <p className="text-red-500 text-[13px] mt-3 font-medium">{error}</p>}
+            <button onClick={handlePassengerLogin} className={btnPrimary + " mt-5"}>Войти</button>
           </div>
-          {error && <p className="text-red-400 text-sm mt-3 font-medium">{error}</p>}
-          <button onClick={handlePassengerLogin} className="mt-6 w-full taxi-gradient text-white font-bold py-4 rounded-3xl shadow-lg shadow-violet-300/40 active:scale-95 transition-transform text-base">Войти</button>
-        </div>
-      )}
+        )}
 
-      {activeForm === "driver" && (
-        <div className="flex-1 flex flex-col px-5 pt-4 animate-slide-up">
-          <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-slate-400 text-sm mb-6 font-medium"><Icon name="ArrowLeft" size={16} /> Назад</button>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-xl" style={{ background: "linear-gradient(135deg, #ede9fe, #ddd6fe)" }}>🚗</div>
-            <h2 className="text-xl font-black text-slate-800">Вход для водителя</h2>
-          </div>
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5 block">Логин</label>
-              <input type="text" placeholder="Введите логин" value={driverLogin} onChange={e => { setDriverLogin(e.target.value); setError(""); }} className={inputCls} />
+        {activeForm === "driver" && (
+          <div className="animate-slide-up">
+            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[#2AABEE] text-[14px] mb-5 font-semibold">
+              <Icon name="ArrowLeft" size={16} /> Назад
+            </button>
+            <h2 className="text-[18px] font-black text-[#17212b] mb-5">Вход для водителя</h2>
+            <div className="space-y-3">
+              <div>
+                <label className="text-[11px] font-semibold text-[#708499] uppercase tracking-wider mb-1.5 block">Логин</label>
+                <input type="text" placeholder="Введите логин" value={driverLogin} onChange={e => { setDriverLogin(e.target.value); setError(""); }} className={inputCls} />
+              </div>
+              <div>
+                <label className="text-[11px] font-semibold text-[#708499] uppercase tracking-wider mb-1.5 block">Пароль</label>
+                <input type="password" placeholder="Введите пароль" value={driverPassword} onChange={e => { setDriverPassword(e.target.value); setError(""); }} className={inputCls} />
+              </div>
             </div>
+            <p className="text-[12px] text-[#708499] mt-2">Данные предоставляет администратор</p>
+            {error && <p className="text-red-500 text-[13px] mt-3 font-medium">{error}</p>}
+            <button onClick={handleDriverLogin} className={btnPrimary + " mt-5"}>Войти</button>
+          </div>
+        )}
+
+        {activeForm === "admin" && (
+          <div className="animate-slide-up">
+            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[#2AABEE] text-[14px] mb-5 font-semibold">
+              <Icon name="ArrowLeft" size={16} /> Назад
+            </button>
+            <h2 className="text-[18px] font-black text-[#17212b] mb-5">Вход администратора</h2>
             <div>
-              <label className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5 block">Пароль</label>
-              <input type="password" placeholder="Введите пароль" value={driverPassword} onChange={e => { setDriverPassword(e.target.value); setError(""); }} className={inputCls} />
+              <label className="text-[11px] font-semibold text-[#708499] uppercase tracking-wider mb-1.5 block">Пароль</label>
+              <input type="password" placeholder="Введите пароль" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setError(""); }} className={inputCls} />
             </div>
+            {error && <p className="text-red-500 text-[13px] mt-3 font-medium">{error}</p>}
+            <button onClick={handleAdminLogin} className={btnPrimary + " mt-5"}>Войти</button>
           </div>
-          <p className="text-xs text-slate-400 mt-3">Данные предоставляет администратор</p>
-          {error && <p className="text-red-400 text-sm mt-3 font-medium">{error}</p>}
-          <button onClick={handleDriverLogin} className="mt-6 w-full taxi-gradient text-white font-bold py-4 rounded-3xl shadow-lg shadow-violet-300/40 active:scale-95 transition-transform text-base">Войти</button>
-        </div>
-      )}
+        )}
 
-      {activeForm === "admin" && (
-        <div className="flex-1 flex flex-col px-5 pt-4 animate-slide-up">
-          <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-slate-400 text-sm mb-6 font-medium"><Icon name="ArrowLeft" size={16} /> Назад</button>
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-2xl flex items-center justify-center text-xl" style={{ background: "linear-gradient(135deg, #ede9fe, #ddd6fe)" }}>🛡️</div>
-            <h2 className="text-xl font-black text-slate-800">Вход для администратора</h2>
-          </div>
-          <div>
-            <label className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5 block">Пароль</label>
-            <input type="password" placeholder="Введите пароль" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setError(""); }} className={inputCls} />
-          </div>
-          {error && <p className="text-red-400 text-sm mt-3 font-medium">{error}</p>}
-          <button onClick={handleAdminLogin} className="mt-6 w-full taxi-gradient text-white font-bold py-4 rounded-3xl shadow-lg shadow-violet-300/40 active:scale-95 transition-transform text-base">Войти</button>
-        </div>
-      )}
-
-      <div className="pb-8 pt-4 text-center text-xs text-slate-300">ТаксиЭкспресс © 2025</div>
+        <p className="text-center text-[11px] text-[#a0adb8] mt-8">Алло Антипиха © 2025</p>
+      </div>
     </div>
   );
 }

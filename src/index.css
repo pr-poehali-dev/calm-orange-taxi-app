@@ -4,56 +4,56 @@
 
 @layer base {
   :root {
-    --background: 240 20% 97%;
-    --foreground: 240 18% 12%;
+    /* Telegram-style palette */
+    --background: 210 20% 96%;
+    --foreground: 214 32% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 18% 12%;
+    --card-foreground: 214 32% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 18% 12%;
+    --popover-foreground: 214 32% 12%;
 
-    --primary: 252 85% 60%;
+    --primary: 200 100% 40%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 250 30% 94%;
-    --secondary-foreground: 250 20% 25%;
+    --secondary: 205 30% 93%;
+    --secondary-foreground: 214 25% 20%;
 
-    --muted: 240 15% 94%;
-    --muted-foreground: 240 10% 52%;
+    --muted: 210 20% 93%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 262 80% 55%;
+    --accent: 198 100% 38%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 15% 90%;
-    --input: 240 15% 90%;
-    --ring: 252 85% 60%;
+    --border: 210 20% 88%;
+    --input: 210 20% 88%;
+    --ring: 200 100% 40%;
 
     --radius: 1.5rem;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 252 85% 60%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 250 30% 94%;
-    --sidebar-accent-foreground: 240 18% 12%;
-    --sidebar-border: 240 15% 90%;
-    --sidebar-ring: 252 85% 60%;
+    --sidebar-foreground: 214 25% 20%;
+    --sidebar-primary: 200 100% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 205 30% 93%;
+    --sidebar-accent-foreground: 214 25% 20%;
+    --sidebar-border: 210 20% 88%;
+    --sidebar-ring: 200 100% 40%;
 
-    /* Brand palette — deep violet */
-    --brand-50: #f5f3ff;
-    --brand-100: #ede9fe;
-    --brand-200: #ddd6fe;
-    --brand-300: #c4b5fd;
-    --brand-400: #a78bfa;
-    --brand-500: #8b5cf6;
-    --brand-600: #7c3aed;
-    --brand-700: #6d28d9;
-    --brand-800: #5b21b6;
-    --brand-900: #4c1d95;
+    /* Telegram brand colors */
+    --tg-blue: #2aabee;
+    --tg-blue-dark: #0088cc;
+    --tg-blue-deeper: #006aad;
+    --tg-bg: #f1f3f4;
+    --tg-bg-secondary: #ffffff;
+    --tg-text: #17212b;
+    --tg-text-secondary: #708499;
+    --tg-divider: #e6ebf1;
+    --tg-green: #4dcd5e;
   }
 }
 
@@ -63,7 +63,8 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--tg-bg);
+    color: var(--tg-text);
     font-family: "Golos Text", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
@@ -77,22 +78,29 @@
 }
 
 @layer utilities {
+  .tg-gradient {
+    background: linear-gradient(135deg, #2aabee 0%, #0088cc 100%);
+  }
+
+  .tg-gradient-deep {
+    background: linear-gradient(160deg, #2aabee 0%, #006aad 100%);
+  }
+
+  .tg-surface {
+    background-color: #ffffff;
+  }
+
+  .tg-bg {
+    background-color: var(--tg-bg);
+  }
+
+  /* taxi-gradient alias kept for compatibility */
   .taxi-gradient {
-    background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 60%, #5b21b6 100%);
-  }
-
-  .taxi-gradient-soft {
-    background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
-  }
-
-  .glass-card {
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: linear-gradient(135deg, #2aabee 0%, #0088cc 100%);
   }
 
   .animate-fade-in {
-    animation: fadeIn 0.3s ease-out forwards;
+    animation: fadeIn 0.25s ease-out forwards;
   }
 
   .animate-scale-in {
@@ -100,13 +108,13 @@
   }
 
   .animate-slide-up {
-    animation: slideUp 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation: slideUp 0.32s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(8px);
     }
     to {
       opacity: 1;
@@ -117,7 +125,7 @@
   @keyframes scaleIn {
     from {
       opacity: 0;
-      transform: scale(0.9);
+      transform: scale(0.92);
     }
     to {
       opacity: 1;
@@ -128,7 +136,7 @@
   @keyframes slideUp {
     from {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(24px);
     }
     to {
       opacity: 1;
