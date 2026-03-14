@@ -37,7 +37,7 @@ export default function WelcomeScreen({ onLogin }: Props) {
   const openForm = (form: "passenger" | "driver" | "admin") => { setActiveForm(form); setError(""); };
 
   const inputCls = "w-full bg-white border rounded-2xl px-4 py-3.5 text-[#1a1a1a] placeholder-[#bbb] focus:outline-none text-[15px] transition-all"
-    + " focus:border-[#00897b] focus:ring-2 focus:ring-[#00897b]/15";
+    + " focus:border-[#009688] focus:ring-2 focus:ring-[#009688]/15";
   const btnPrimary = "w-full font-semibold py-3.5 rounded-2xl text-[15px] text-white active:scale-95 transition-all";
 
   return (
@@ -79,7 +79,7 @@ export default function WelcomeScreen({ onLogin }: Props) {
 
         {activeForm === "passenger" && (
           <div className="animate-slide-up">
-            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[14px] mb-5 font-semibold" style={{ color: "#00897b" }}>
+            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[14px] mb-5 font-semibold" style={{ color: "#009688" }}>
               <Icon name="ArrowLeft" size={16} /> Назад
             </button>
             <h2 className="text-[18px] font-black mb-5" style={{ color: "#1a1a1a" }}>Вход для пассажира</h2>
@@ -94,13 +94,13 @@ export default function WelcomeScreen({ onLogin }: Props) {
               </div>
             </div>
             {error && <p className="text-red-500 text-[13px] mt-3 font-medium">{error}</p>}
-            <button onClick={handlePassengerLogin} className={btnPrimary + " mt-5"} style={{ background: "#00897b" }}>Войти</button>
+            <button onClick={handlePassengerLogin} className={btnPrimary + " mt-5"} style={{ background: "#009688" }}>Войти</button>
           </div>
         )}
 
         {activeForm === "driver" && (
           <div className="animate-slide-up">
-            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[14px] mb-5 font-semibold" style={{ color: "#00897b" }}>
+            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[14px] mb-5 font-semibold" style={{ color: "#009688" }}>
               <Icon name="ArrowLeft" size={16} /> Назад
             </button>
             <h2 className="text-[18px] font-black mb-5" style={{ color: "#1a1a1a" }}>Вход для водителя</h2>
@@ -116,13 +116,13 @@ export default function WelcomeScreen({ onLogin }: Props) {
             </div>
             <p className="text-[12px] mt-2" style={{ color: "#bbb" }}>Данные предоставляет администратор</p>
             {error && <p className="text-red-500 text-[13px] mt-3 font-medium">{error}</p>}
-            <button onClick={handleDriverLogin} className={btnPrimary + " mt-5"} style={{ background: "#00897b" }}>Войти</button>
+            <button onClick={handleDriverLogin} className={btnPrimary + " mt-5"} style={{ background: "#009688" }}>Войти</button>
           </div>
         )}
 
         {activeForm === "admin" && (
           <div className="animate-slide-up">
-            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[14px] mb-5 font-semibold" style={{ color: "#00897b" }}>
+            <button onClick={() => setActiveForm(null)} className="flex items-center gap-1.5 text-[14px] mb-5 font-semibold" style={{ color: "#009688" }}>
               <Icon name="ArrowLeft" size={16} /> Назад
             </button>
             <h2 className="text-[18px] font-black mb-5" style={{ color: "#1a1a1a" }}>Вход администратора</h2>
@@ -131,7 +131,7 @@ export default function WelcomeScreen({ onLogin }: Props) {
               <input type="password" placeholder="Введите пароль" value={adminPassword} onChange={e => { setAdminPassword(e.target.value); setError(""); }} className={inputCls} style={{ borderColor: "#e8e8e8" }} />
             </div>
             {error && <p className="text-red-500 text-[13px] mt-3 font-medium">{error}</p>}
-            <button onClick={handleAdminLogin} className={btnPrimary + " mt-5"} style={{ background: "#00897b" }}>Войти</button>
+            <button onClick={handleAdminLogin} className={btnPrimary + " mt-5"} style={{ background: "#009688" }}>Войти</button>
           </div>
         )}
 

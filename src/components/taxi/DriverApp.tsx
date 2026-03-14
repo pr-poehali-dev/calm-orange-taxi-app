@@ -24,7 +24,7 @@ const INITIAL_ORDERS: Order[] = [
 
 const ST: Record<OrderStatus, { label: string; color: string; bg: string }> = {
   free: { label: "Свободен", color: "#2ab54c", bg: "#e8f8ec" },
-  in_progress: { label: "В работе", color: "#00897b", bg: "#e0f2f0" },
+  in_progress: { label: "В работе", color: "#009688", bg: "#e0f2f0" },
   done: { label: "Выполнен", color: "#888", bg: "#f0f0f0" },
 };
 

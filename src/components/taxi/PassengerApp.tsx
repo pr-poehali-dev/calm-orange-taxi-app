@@ -73,11 +73,11 @@ export default function PassengerApp({ userName, onLogout }: Props) {
       <div className="flex-1 overflow-y-auto pb-24 px-4 pt-4">
         {activeTab === "order" && (
           <div className="space-y-3 animate-fade-in">
-            <div className="bg-white rounded-2xl p-1.5 flex gap-1 border border-[#e6ebf1]">
+            <div className="bg-white rounded-2xl p-1.5 flex gap-1" style={{ border: "1px solid #e8e8e8" }}>
               {tariffTabs.map(t => (
                 <button key={t.id} onClick={() => setTariff(t.id)}
-                  className={`flex-1 py-2.5 rounded-xl text-[12px] font-semibold transition-all flex items-center justify-center gap-1.5 ${tariff === t.id ? "text-white shadow-sm" : "text-[#708499]"}`}
-                  style={tariff === t.id ? { background: "#007e7a" } : {}}>
+                  className="flex-1 py-2.5 rounded-xl text-[12px] font-semibold transition-all flex items-center justify-center gap-1.5"
+                  style={tariff === t.id ? { background: "#009688", color: "#fff" } : { color: "#888" }}>
                   {t.icon} {t.label}
                 </button>
               ))}
@@ -146,8 +146,8 @@ export default function PassengerApp({ userName, onLogout }: Props) {
 
             <div className="pb-2">
               {ordered
-                ? <div className="w-full bg-[#4dcd5e] text-white font-bold py-4 rounded-2xl text-center text-[15px] animate-scale-in">✅ Заказ принят! Ожидайте водителя</div>
-                : <button onClick={handleOrder} className="w-full text-white font-bold py-4 rounded-2xl active:scale-95 transition-all text-[15px]" style={{ background: "#007e7a" }}>Заказать</button>
+                ? <div className="w-full text-white font-bold py-4 rounded-2xl text-center text-[15px] animate-scale-in" style={{ background: "#2ab54c" }}>✅ Заказ принят! Ожидайте водителя</div>
+                : <button onClick={handleOrder} className="w-full text-white font-bold py-4 rounded-2xl active:scale-95 transition-all text-[15px]" style={{ background: "#009688" }}>Заказать</button>
               }
             </div>
           </div>
@@ -198,13 +198,19 @@ export default function PassengerApp({ userName, onLogout }: Props) {
         )}
       </div>
 
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] flex safe-bottom" style={{ background: "#2d3540" }}>
-        <button onClick={() => setActiveTab("order")} className={`flex-1 flex flex-col items-center py-3 gap-0.5 ${activeTab === "order" ? "text-white" : "text-white/40"}`}>
-          <Icon name="Car" size={22} /><span className="text-[10px] font-semibold">Заказ</span>
-        </button>
-        <button onClick={() => setActiveTab("profile")} className={`flex-1 flex flex-col items-center py-3 gap-0.5 ${activeTab === "profile" ? "text-white" : "text-white/40"}`}>
-          <Icon name="User" size={22} /><span className="text-[10px] font-semibold">Профиль</span>
-        </button>
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white safe-bottom" style={{ borderTop: "1px solid #e8e8e8" }}>
+        <div className="flex">
+          {([
+            { id: "order" as const, icon: "Car", label: "В работе" },
+            { id: "profile" as const, icon: "ClipboardList", label: "Заказы" },
+          ] as const).map(tab => (
+            <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+              className="flex-1 py-3 flex flex-col items-center gap-1 transition-all">
+              <Icon name={tab.icon} size={22} style={{ color: activeTab === tab.id ? "#009688" : "#bbb" } as React.CSSProperties} />
+              <span className="text-[10px] font-semibold" style={{ color: activeTab === tab.id ? "#009688" : "#bbb" }}>{tab.label}</span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

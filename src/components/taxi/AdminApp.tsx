@@ -16,7 +16,7 @@ interface Driver {
 
 const STATUS_INFO: Record<OrderStatus, { label: string; color: string; bg: string }> = {
   free:        { label: "Свободен",  color: "#2ab54c",  bg: "#e8f8ec" },
-  in_progress: { label: "В работе",  color: "#00897b",  bg: "#e0f2f0" },
+  in_progress: { label: "В работе",  color: "#009688",  bg: "#e0f2f0" },
   in_route:    { label: "В пути",    color: "#1976d2",  bg: "#e3f2fd" },
   waiting:     { label: "Ожидание",  color: "#f57c00",  bg: "#fff3e0" },
 };
@@ -32,7 +32,7 @@ const INIT_DRIVERS: Driver[] = [
   { id: 2, login: "driver2", name: "Иван Сидоров", phone: "+7 (999) 444-55-66" },
 ];
 
-const inputCls = "w-full bg-[#f8f8f8] border rounded-2xl px-4 py-3.5 text-[#1a1a1a] placeholder-[#bbb] focus:outline-none focus:border-[#00897b] focus:ring-2 focus:ring-[#00897b]/15 text-[14px] transition-all";
+const inputCls = "w-full bg-[#f8f8f8] border rounded-2xl px-4 py-3.5 text-[#1a1a1a] placeholder-[#bbb] focus:outline-none focus:border-[#009688] focus:ring-2 focus:ring-[#009688]/15 text-[14px] transition-all";
 
 export default function AdminApp({ onLogout }: Props) {
   const [orders, setOrders] = useState<LiveOrder[]>(INIT_ORDERS);
@@ -100,13 +100,13 @@ export default function AdminApp({ onLogout }: Props) {
             className="bg-white rounded-2xl p-4 flex flex-col items-center gap-2 active:scale-95 transition-all"
             style={{ border: "1px solid #e8e8e8" }}>
             <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "#f0f0f0" }}>
-              <Icon name="Lock" size={18} style={{ color: "#00897b" } as React.CSSProperties} />
+              <Icon name="Lock" size={18} style={{ color: "#009688" } as React.CSSProperties} />
             </div>
             <span className="text-[12px] font-semibold text-center" style={{ color: "#1a1a1a" }}>Сменить пароль</span>
           </button>
           <button onClick={() => setShowDriver(true)}
             className="rounded-2xl p-4 flex flex-col items-center gap-2 active:scale-95 transition-all"
-            style={{ background: "#00897b" }}>
+            style={{ background: "#009688" }}>
             <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: "rgba(255,255,255,0.2)" }}>
               <Icon name="UserPlus" size={18} style={{ color: "#fff" } as React.CSSProperties} />
             </div>
@@ -117,7 +117,7 @@ export default function AdminApp({ onLogout }: Props) {
         {/* Drivers */}
         <div className="bg-white rounded-2xl overflow-hidden" style={{ border: "1px solid #e8e8e8" }}>
           <div className="px-4 py-3 flex items-center gap-2" style={{ borderBottom: "1px solid #f0f0f0" }}>
-            <Icon name="Users" size={15} style={{ color: "#00897b" } as React.CSSProperties} />
+            <Icon name="Users" size={15} style={{ color: "#009688" } as React.CSSProperties} />
             <h4 className="font-bold text-[14px]" style={{ color: "#1a1a1a" }}>Водители ({drivers.length})</h4>
           </div>
           {drivers.map((d, i) => (
@@ -135,7 +135,7 @@ export default function AdminApp({ onLogout }: Props) {
         {/* Live orders */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#00897b" }} />
+            <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "#009688" }} />
             <h4 className="font-bold text-[14px]" style={{ color: "#1a1a1a" }}>Активные заказы ({orders.length})</h4>
           </div>
 
@@ -167,12 +167,12 @@ export default function AdminApp({ onLogout }: Props) {
                 <div className="space-y-1.5 mb-2.5">
                   {order.from && (
                     <div className="flex gap-2 text-[13px]">
-                      <span style={{ color: "#00897b" }}>●</span>
+                      <span style={{ color: "#009688" }}>●</span>
                       <span style={{ color: "#555" }}>{order.from}</span>
                     </div>
                   )}
                   <div className="flex gap-2 text-[13px]">
-                    <span style={{ color: order.from ? "#1a1a1a" : "#00897b" }}>●</span>
+                    <span style={{ color: order.from ? "#1a1a1a" : "#009688" }}>●</span>
                     <span style={{ color: "#555" }}>{order.to}</span>
                   </div>
                 </div>
