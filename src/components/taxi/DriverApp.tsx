@@ -96,14 +96,19 @@ export default function DriverApp({ userName, onLogout }: Props) {
             )}
 
             {order.status === "free" && (
-              <button onClick={() => takeOrder(order.id)} className="w-full tg-gradient text-white font-semibold py-3 rounded-xl text-[14px] active:scale-95 transition-all shadow-sm shadow-[#2AABEE]/20">
+              <button onClick={() => takeOrder(order.id)} className="w-full text-white font-semibold py-3 rounded-xl text-[14px] active:scale-95 transition-all" style={{ background: "#007e7a" }}>
                 Взять в работу
               </button>
             )}
             {order.status === "in_progress" && (
-              <button onClick={() => completeOrder(order.id)} className="w-full bg-[#4dcd5e] text-white font-semibold py-3 rounded-xl text-[14px] active:scale-95 transition-all">
-                ✅ Завершить поездку
-              </button>
+              <div className="flex gap-2">
+                <button className="flex-1 bg-white text-[#2d3540] font-semibold py-3 rounded-xl text-[14px] active:scale-95 transition-all border border-[#e6ebf1]">
+                  Действия
+                </button>
+                <button onClick={() => completeOrder(order.id)} className="flex-1 text-white font-semibold py-3 rounded-xl text-[14px] active:scale-95 transition-all" style={{ background: "#007e7a" }}>
+                  Завершить
+                </button>
+              </div>
             )}
           </div>
         )}
@@ -113,7 +118,7 @@ export default function DriverApp({ userName, onLogout }: Props) {
 
   return (
     <div className="min-h-dvh flex flex-col" style={{ background: "#f1f3f4" }}>
-      <div className="tg-gradient px-5 pt-12 pb-4 flex items-center justify-between">
+      <div className="px-5 pt-12 pb-4 flex items-center justify-between" style={{ background: "#2d3540" }}>
         <div className="flex items-center gap-3">
           <div className="drop-shadow-lg"><TaxiLogo size={38} /></div>
           <div>
@@ -121,7 +126,7 @@ export default function DriverApp({ userName, onLogout }: Props) {
             <p className="text-white/75 text-[11px]">{userName}</p>
           </div>
         </div>
-        <div className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center text-lg">🚗</div>
+        <div className="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center text-lg">🚗</div>
       </div>
 
       <div className="flex-1 overflow-y-auto pb-24 px-4 pt-4">
