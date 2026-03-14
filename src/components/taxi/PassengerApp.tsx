@@ -16,18 +16,19 @@ const ORDER_HISTORY = [
   { id: 3, date: "5 марта", from: "ул. Гагарина, 7", to: "ТЦ Планета", cost: 280 },
 ];
 
-const inputCls = "w-full bg-[#f1f3f4] border border-transparent rounded-2xl px-4 py-3.5 text-[#17212b] placeholder-[#a0adb8] focus:outline-none focus:border-[#2AABEE] focus:bg-white focus:ring-2 focus:ring-[#2AABEE]/15 text-[14px] transition-all resize-none";
+const inputCls = "w-full bg-[#f8f8f8] border border-[#e8e8e8] rounded-2xl px-4 py-3.5 text-[#1a1a1a] placeholder-[#bbb] focus:outline-none focus:border-[#009688] focus:bg-white focus:ring-2 focus:ring-[#009688]/15 text-[14px] transition-all resize-none";
 
 function SectionCard({ children }: { children: React.ReactNode }) {
-  return <div className="bg-white rounded-2xl p-4 border border-[#e6ebf1] space-y-3">{children}</div>;
+  return <div className="bg-white rounded-2xl p-4 space-y-3" style={{ border: "1px solid #e8e8e8" }}>{children}</div>;
 }
 function OptionsCard({ children }: { children: React.ReactNode }) {
-  return <div className="bg-white rounded-2xl p-4 border border-[#e6ebf1] space-y-4">{children}</div>;
+  return <div className="bg-white rounded-2xl p-4 space-y-4" style={{ border: "1px solid #e8e8e8" }}>{children}</div>;
 }
 function PayBtn({ val, cur, set, label, emoji }: { val: PaymentType; cur: PaymentType; set: (v: PaymentType) => void; label: string; emoji: string }) {
   return (
     <button onClick={() => set(val)}
-      className={`flex-1 py-2.5 rounded-xl text-[13px] font-semibold border-2 transition-all ${cur === val ? "border-[#2AABEE] bg-[#e8f6fd] text-[#006aad]" : "border-[#e6ebf1] text-[#708499] bg-white"}`}>
+      className="flex-1 py-2.5 rounded-xl text-[13px] font-semibold border-2 transition-all"
+      style={cur === val ? { borderColor: "#009688", background: "#e0f2f0", color: "#00695c" } : { borderColor: "#e8e8e8", color: "#888", background: "#fff" }}>
       {emoji} {label}
     </button>
   );
@@ -57,16 +58,16 @@ export default function PassengerApp({ userName, onLogout }: Props) {
   ];
 
   return (
-    <div className="min-h-dvh flex flex-col" style={{ background: "#f1f3f4" }}>
-      <div className="tg-gradient px-5 pt-12 pb-4 flex items-center justify-between">
+    <div className="min-h-dvh flex flex-col" style={{ background: "#f0f0f0" }}>
+      <div className="px-5 pt-12 pb-4 flex items-center justify-between" style={{ background: "#2e3440" }}>
         <div className="flex items-center gap-3">
           <div className="drop-shadow-lg"><TaxiLogo size={38} /></div>
           <div>
             <h2 className="text-white font-black text-[16px] leading-tight">Алло Антипиха</h2>
-            <p className="text-white/75 text-[11px]">{userName || "Пассажир"}</p>
+            <p className="text-[11px]" style={{ color: "rgba(255,255,255,0.55)" }}>{userName || "Пассажир"}</p>
           </div>
         </div>
-        <div className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center text-lg">👤</div>
+        <div className="w-9 h-9 rounded-full flex items-center justify-center text-lg" style={{ background: "rgba(255,255,255,0.12)" }}>👤</div>
       </div>
 
       <div className="flex-1 overflow-y-auto pb-24 px-4 pt-4">
@@ -75,7 +76,8 @@ export default function PassengerApp({ userName, onLogout }: Props) {
             <div className="bg-white rounded-2xl p-1.5 flex gap-1 border border-[#e6ebf1]">
               {tariffTabs.map(t => (
                 <button key={t.id} onClick={() => setTariff(t.id)}
-                  className={`flex-1 py-2.5 rounded-xl text-[12px] font-semibold transition-all flex items-center justify-center gap-1.5 ${tariff === t.id ? "tg-gradient text-white shadow-sm" : "text-[#708499]"}`}>
+                  className={`flex-1 py-2.5 rounded-xl text-[12px] font-semibold transition-all flex items-center justify-center gap-1.5 ${tariff === t.id ? "text-white shadow-sm" : "text-[#708499]"}`}
+                  style={tariff === t.id ? { background: "#007e7a" } : {}}>
                   {t.icon} {t.label}
                 </button>
               ))}
@@ -112,10 +114,6 @@ export default function PassengerApp({ userName, onLogout }: Props) {
                   <p className="text-[13px] text-[#708499] font-semibold mb-2">Комментарий</p>
                   <textarea placeholder="Пожелания к поездке..." value={comment} onChange={e => setComment(e.target.value)} rows={2} className={inputCls} />
                 </div>
-                <div>
-                  <p className="text-[13px] text-[#708499] font-semibold mb-2">Предлагаемая стоимость</p>
-                  <input type="number" placeholder="₽ Ваша цена" value={price} onChange={e => setPrice(e.target.value)} className={inputCls} />
-                </div>
               </OptionsCard>
             </>)}
 
@@ -143,14 +141,13 @@ export default function PassengerApp({ userName, onLogout }: Props) {
                 <p className="text-[12px] font-bold text-[#708499] uppercase tracking-wide">Опции</p>
                 <div><p className="text-[13px] text-[#708499] font-semibold mb-2">💳 Оплата</p><div className="flex gap-2"><PayBtn val="cash" cur={cargoPayment} set={setCargoPayment} label="Наличные" emoji="💵" /><PayBtn val="transfer" cur={cargoPayment} set={setCargoPayment} label="Перевод" emoji="📲" /></div></div>
                 <div><p className="text-[13px] text-[#708499] font-semibold mb-2">Комментарий</p><textarea placeholder="Дополнительные пожелания..." value={cargoComment} onChange={e => setCargoComment(e.target.value)} rows={2} className={inputCls} /></div>
-                <div><p className="text-[13px] text-[#708499] font-semibold mb-2">Предлагаемая стоимость</p><input type="number" placeholder="₽ Ваша цена" value={cargoPrice} onChange={e => setCargoPrice(e.target.value)} className={inputCls} /></div>
               </OptionsCard>
             </>)}
 
             <div className="pb-2">
               {ordered
                 ? <div className="w-full bg-[#4dcd5e] text-white font-bold py-4 rounded-2xl text-center text-[15px] animate-scale-in">✅ Заказ принят! Ожидайте водителя</div>
-                : <button onClick={handleOrder} className="w-full tg-gradient text-white font-bold py-4 rounded-2xl shadow-md shadow-[#2AABEE]/25 active:scale-95 transition-all text-[15px]">Заказать</button>
+                : <button onClick={handleOrder} className="w-full text-white font-bold py-4 rounded-2xl active:scale-95 transition-all text-[15px]" style={{ background: "#007e7a" }}>Заказать</button>
               }
             </div>
           </div>
@@ -201,11 +198,11 @@ export default function PassengerApp({ userName, onLogout }: Props) {
         )}
       </div>
 
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] bg-white border-t border-[#e6ebf1] flex safe-bottom">
-        <button onClick={() => setActiveTab("order")} className={`flex-1 flex flex-col items-center py-3 gap-0.5 ${activeTab === "order" ? "text-[#2AABEE]" : "text-[#c5d0dc]"}`}>
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] flex safe-bottom" style={{ background: "#2d3540" }}>
+        <button onClick={() => setActiveTab("order")} className={`flex-1 flex flex-col items-center py-3 gap-0.5 ${activeTab === "order" ? "text-white" : "text-white/40"}`}>
           <Icon name="Car" size={22} /><span className="text-[10px] font-semibold">Заказ</span>
         </button>
-        <button onClick={() => setActiveTab("profile")} className={`flex-1 flex flex-col items-center py-3 gap-0.5 ${activeTab === "profile" ? "text-[#2AABEE]" : "text-[#c5d0dc]"}`}>
+        <button onClick={() => setActiveTab("profile")} className={`flex-1 flex flex-col items-center py-3 gap-0.5 ${activeTab === "profile" ? "text-white" : "text-white/40"}`}>
           <Icon name="User" size={22} /><span className="text-[10px] font-semibold">Профиль</span>
         </button>
       </div>
